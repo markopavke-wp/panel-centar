@@ -104,30 +104,40 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <Stagger className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <StaggerItem key={s.title}>
-                <article className="group overflow-hidden rounded-2xl glass h-full">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={s.image}
-                      alt={s.title}
-                      fill
-                      className="object-cover transition duration-700 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                    />
+          <Stagger className="relative mt-14 sm:mt-16">
+            <div
+              className="pointer-events-none absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-orange/60 via-white/15 to-orange/60 md:left-0 md:right-0 md:top-6 md:bottom-auto md:h-px md:w-auto md:bg-gradient-to-r"
+              aria-hidden
+            />
+            <div className="grid gap-10 md:grid-cols-3 md:gap-6">
+              {services.map((s, i) => (
+                <StaggerItem key={s.title}>
+                  <div className="group relative flex gap-5 md:flex-col md:gap-0">
+                    <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-orange/50 bg-charcoal font-display text-lg font-bold text-orange shadow-[0_0_0_6px_var(--brand-charcoal)] transition group-hover:border-orange group-hover:bg-orange group-hover:text-white">
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+
+                    <div className="flex-1 md:mt-6">
+                      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl glass">
+                        <Image
+                          src={s.image}
+                          alt={s.title}
+                          fill
+                          className="object-cover transition duration-700 group-hover:scale-105"
+                          sizes="(max-width: 1024px) 100vw, 33vw"
+                        />
+                      </div>
+                      <h3 className="mt-5 font-display text-xl font-bold text-white">
+                        {s.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-mist/65">
+                        {s.text}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-6 md:p-7">
-                    <h3 className="font-display text-xl font-bold text-white">
-                      {s.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-mist/65">
-                      {s.text}
-                    </p>
-                  </div>
-                </article>
-              </StaggerItem>
-            ))}
+                </StaggerItem>
+              ))}
+            </div>
           </Stagger>
         </div>
       </section>
